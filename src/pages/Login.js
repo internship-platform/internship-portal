@@ -1,15 +1,15 @@
-import { React, useState, useEffect } from "react";
-import { login } from "../firebase/actions/authActions";
-import { Navigate } from "react-router-dom";
-import { auth } from "../firebase/firebase";
-import LoginForm from "../components/Register/LoginForm";
-import login_image from "./../images/login.svg";
+import { React, useState } from 'react';
+import { login } from '../firebase/actions/authActions';
+import { Navigate } from 'react-router-dom';
+// import { auth } from '../firebase/firebase';
+import LoginForm from '../components/Register/LoginForm';
+import loginImage from './../images/login.svg';
 
 const Signup = () => {
   return (
     <section className="grid md:grid-cols-3 h-screen w-screen">
       <div className="hidden md:flex bg-blue-500 style={{ width: '80%' }}">
-        <img src={login_image} alt="Example SVG" />
+        <img src={loginImage} alt="Example SVG" />
       </div>
 
       <div class="col-span-2">
@@ -22,8 +22,8 @@ const Signup = () => {
 const Login = () => {
   const [isRegistered, setIsRegistered] = useState(false);
   const [formValues, setFormValues] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   //   useEffect(() => {
   //     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -49,10 +49,10 @@ const Login = () => {
   const validateForm = () => {
     const errors = {};
     if (!formValues.email.trim()) {
-      errors.email = "Email is required";
+      errors.email = 'Email is required';
     }
     if (!formValues.password.trim()) {
-      errors.password = "Password is required";
+      errors.password = 'Password is required';
     }
 
     return errors;
@@ -71,7 +71,7 @@ const Login = () => {
         setIsRegistered(false);
       }
     } else {
-      console.log("Form has errors:", errors);
+      console.log('Form has errors:', errors);
       // Display the errors to the user or update your form state to display errors
     }
   };
