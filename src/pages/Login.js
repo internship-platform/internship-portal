@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { login } from "../firebase/actions/authActions";
 import { Navigate } from "react-router-dom";
-// import { auth } from '../firebase/firebase';
+import { auth } from "../firebase/firebase";
 import LoginForm from "../components/Register/LoginForm";
 import loginImage from "./../images/login.svg";
 
@@ -71,7 +71,6 @@ const Login = () => {
         setIsRegistered(false);
       }
     } else {
-      console.log("Form has errors:", errors);
       // Display the errors to the user or update your form state to display errors
     }
   };
