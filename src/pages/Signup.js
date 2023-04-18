@@ -34,7 +34,7 @@ const Register = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        setIsRegistered(false);
+        setIsRegistered(true);
       } else {
         setIsRegistered(false);
       }

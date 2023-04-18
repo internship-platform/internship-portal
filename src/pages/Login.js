@@ -1,9 +1,9 @@
-import { React, useState } from 'react';
-import { login } from '../firebase/actions/authActions';
-import { Navigate } from 'react-router-dom';
+import { React, useState, useEffect } from "react";
+import { login } from "../firebase/actions/authActions";
+import { Navigate } from "react-router-dom";
 // import { auth } from '../firebase/firebase';
-import LoginForm from '../components/Register/LoginForm';
-import loginImage from './../images/login.svg';
+import LoginForm from "../components/Register/LoginForm";
+import loginImage from "./../images/login.svg";
 
 const Signup = () => {
   return (
@@ -22,20 +22,20 @@ const Signup = () => {
 const Login = () => {
   const [isRegistered, setIsRegistered] = useState(false);
   const [formValues, setFormValues] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
-  //   useEffect(() => {
-  //     const unsubscribe = auth.onAuthStateChanged((user) => {
-  //       if (user) {
-  //         setIsRegistered(true);
-  //       } else {
-  //         setIsRegistered(false);
-  //       }
-  //     });
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setIsRegistered(true);
+      } else {
+        setIsRegistered(false);
+      }
+    });
 
-  //     return unsubscribe;
-  //   }, []);
+    return unsubscribe;
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -49,10 +49,10 @@ const Login = () => {
   const validateForm = () => {
     const errors = {};
     if (!formValues.email.trim()) {
-      errors.email = 'Email is required';
+      errors.email = "Email is required";
     }
     if (!formValues.password.trim()) {
-      errors.password = 'Password is required';
+      errors.password = "Password is required";
     }
 
     return errors;
@@ -71,7 +71,7 @@ const Login = () => {
         setIsRegistered(false);
       }
     } else {
-      console.log('Form has errors:', errors);
+      console.log("Form has errors:", errors);
       // Display the errors to the user or update your form state to display errors
     }
   };
