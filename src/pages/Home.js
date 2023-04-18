@@ -9,7 +9,7 @@ import Button from "../components/Button";
 import { useState } from "react";
 import { getInternshipsByTitle } from "../firebase/actions/dbActions";
 
-const cards = ["Programming", "Web Development", "Graphics", "Content-writing"];
+const cards = ['Programming', 'Web Development', 'Graphics', 'Content-writing'];
 
 const Home = () => {
   const [textInput, setTextInput] = useState("");
@@ -49,6 +49,6 @@ const Home = () => {
       </Box>
     </>
   );
-};
+}
 
 export default Home;
