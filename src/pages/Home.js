@@ -1,12 +1,12 @@
-import React from "react";
-import Box from "@mui/material/Box";
+import React from 'react';
+import Box from '@mui/material/Box';
 
-import Navbar from "../components/Navbar";
-import ICard from "../components/ICard";
+import Navbar from '../components/Navbar';
+import ICard from '../components/ICard';
 
-const cards = ["Programming", "Web Development", "Graphics", "Content-writing"];
+const cards = ['Programming', 'Web Development', 'Graphics', 'Content-writing'];
 
-const Home = () => {
+function Home() {
   return (
     <>
       <Navbar />
@@ -25,6 +25,6 @@ const Home = () => {
       </Box>
     </>
   );
-};
+}
 
 export default Home;
