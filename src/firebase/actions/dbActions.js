@@ -42,3 +42,14 @@ export const getInternshipsByCompanyId = (companyId) => {
     return company.postedInternships;
   });
 };
+
+export const getInternshipsByTitle = (title) => {
+  return db.collection("internships").where("title", "==", title).get();
+};
+
+export const getInternshipsByTags = (tags) => {
+  return db
+    .collection("internships")
+    .where("tags", "array-contains-any", tags)
+    .get();
+};
