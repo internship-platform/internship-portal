@@ -1,28 +1,39 @@
-import React from 'react';
-import Box from '@mui/material/Box';
+import React from "react";
+import { Box, Container } from "@mui/material";
 
-import Navbar from '../components/Navbar';
-import ICard from '../components/ICard';
+import Navbar from "../components/Navbar";
+import ICard from "../components/ICard";
+import IDetail from "../components/IDetail";
+// import LaptopImg from "../images/laptop.jpg";
 
-const cards = ['Programming', 'Web Development', 'Graphics', 'Content-writing'];
+const cards = ["Programming", "Web Development", "Graphics", "Content-writing"];
 
 function Home() {
   return (
     <>
       <Navbar />
-      <Box
+      <Container
+        maxWidth={false}
         sx={{
-          marginLeft: 2,
-          marginTop: 2,
+          padding: 2,
+          display: "flex",
+          justifyContent: "space-between",
+          backgroundColor: "rgba(0, 0, 0, 0.1)",
         }}
       >
-        {cards.map((card) => (
-          <>
-            <ICard title={card} />
-            <br />
-          </>
-        ))}
-      </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1em",
+          }}
+        >
+          {cards.map((card, _id) => (
+            <ICard title={card} key={_id} />
+          ))}
+        </Box>
+        <IDetail />
+      </Container>
     </>
   );
 }
