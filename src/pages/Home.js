@@ -8,45 +8,83 @@ import TagInput from "../components/SearchBar/TagInput";
 import SearchButton from "../components/SearchButton";
 import { useState } from "react";
 import {
+  getAllInternships,
+  getCompanyById,
   getInternshipsByTag,
   getInternshipsByTitle,
 } from "../firebase/actions/dbActions";
 import InternshipDetails from "../components/DetailCard/InternshipDetails";
+import { useEffect } from "react";
+import { getDateAndYear, timeAgo } from "../utils";
+import { auth } from "../firebase/firebase";
+import { useNavigate } from "react-router";
 
-const cards = ["Programming", "Web Development", "Graphics", "Content-writing"];
+const cards = [
+  "Programming",
+  "Web Development",
+  "Graphics",
+  "Content-writing",
+  "Content-writing",
+  "Content-writing",
+];
 
 const Home = () => {
   const [textInput, setTextInput] = useState("");
   const [tagInputs, setTagInputs] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
-  const dummyImageUrl =
-    "https://w7.pngwing.com/pngs/628/58/png-transparent-google-logo-google-search-google-now-google-text-trademark-service-thumbnail.png";
-  const dummyTitle = "Python Developers";
-  const dummyCompany = "Google";
-  const dummyDescription =
-    " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti quae molestias modi doloribus, minima quo mollitia dolor expedita ducimus? Earum, natus laudantium fugit rerum, aliquid ad aut eligendi atque, voluptas debitis cupiditate et officia repellendus odit minima quod. Ex odio illum rerum consequuntur eaque ad perferendis odit reiciendis asperiores ea porro voluptatum similique maiores totam suscipit, pariatur natus illo dolores, laborum quibusdam. Quos porro et neque dolor, eum assumenda temporibus nesciunt quam consequatur sequi exercitationem laborum, inventore incidunt, quibusdam sunt magni dolorem sed accusamus harum quidem obcaecati doloremque. Maxime consequatur molestiae molestias voluptatum, obcaecati fugiat in officia soluta rerum accusamus voluptas odit totam cupiditate consequuntur possimus sed magni recusandae doloremque, et eaque facere hic? Expedita inventore ipsam labore id eaque enim rem molestiae, natus consequuntur dolorem molestias illo repellat quam, earum accusamus, impedit necessitatibus sed velit suscipit perspiciatis? Blanditiis nulla sint reprehenderit debitis iure voluptas consequatur ab, ad odio sunt ducimus temporibus suscipit quisquam dolorem vitae nemo excepturi ex, animi, ipsa illum sit impedit. Ab quisquam deserunt dignissimos porro consectetur unde nisi facere voluptatem. Voluptates, rerum veniam ducimus numquam, in consequuntur enim corporis reiciendis vero deserunt iste consequatur amet earum esse magnam ipsa optio sed odio voluptas omnis necessitatibus officia! Iure impedit excepturi at dolorum assumenda sunt rerum earum repellat, quaerat consectetur natus consequuntur officia suscipit corrupti voluptate. Vel, harum dolores asperiores doloribus, velit nihil molestias, labore itaque atque ipsam quos eius laudantium nam omnis! Placeat sint iste deleniti error vitae beatae fugit. Soluta dolor magni provident illo architecto commodi iure tempore itaque mollitia, reiciendis, eum quam ratione? Provident, ipsum iusto sint hic, quia quisquam neque tempora perspiciatis amet harum temporibus molestias. Rem, quaerat. Magnam optio error molestias ipsa, ratione necessitatibus, voluptates et culpa nam odit assumenda, omnis quidem praesentium. Neque ab saepe voluptas beatae autem architecto dolore ad nulla possimus perferendis, facere sunt recusandae. Ullam, ut rem! Aspernatur molestiae laudantium similique hic quisquam architecto dignissimos, ipsam omnis est debitis aliquid dolor expedita earum, ad odit saepe recusandae modi laborum repudiandae inventore harum ut officiis totam? Culpa quia labore alias eum, odit sequi inventore quasi voluptatibus quidem ducimus sint obcaecati enim pariatur eveniet rem incidunt sapiente aut excepturi ratione voluptatum minus, similique perferendis sunt! Alias, ipsam vero dolorem debitis fuga rerum ut sit tempora, possimus quas nulla quaerat deserunt sed sequi. Corrupti corporis at, enim nemo perspiciatis laboriosam ducimus in vel reiciendis dolor pariatur! Quidem voluptate asperiores natus distinctio odio, praesentium debitis doloremque totam nemo harum veritatis accusamus fuga minima, quam, quisquam recusandae iste. Veritatis sunt tempora obcaecati fuga ipsa consectetur repellat laborum libero dicta facilis nobis, quam ad quos. Quam similique, assumenda beatae culpa autem non asperiores expedita, doloribus placeat optio quisquam eligendi sunt consectetur! Soluta harum odit nesciunt, quasi culpa laborum, iusto beatae ipsam sint error nam possimus perspiciatis exercitationem non ad officia sapiente fugit. Incidunt ipsum magni quos perferendis error vero. Rem, amet. Quasi aspernatur dolore itaque impedit quaerat, accusamus maiores ab quae sequi at? Odio quas, earum mollitia ratione libero aut facilis fugit voluptatem aperiam enim Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui cumque quam optio! Magnam, possimus. Accusantium, perspiciatis doloribus neque inventore a maiores explicabo, eaque magni, tempore impedit officiis! Sit similique ratione quo nisi molestias ab cupiditate nulla error nostrum obcaecati consequuntur laboriosam magni eos, adipisci illo dolor pariatur laudantium ex illum ad ea? Enim reprehenderit culpa dignissimos quos neque aspernatur sapiente amet, ipsa ut iure et? Dicta non tenetur, odio in incidunt impedit consequatur ratione blanditiis debitis amet illum reprehenderit minima cupiditate placeat! Eius neque assumenda dicta quam perspiciatis. Id incidunt officiis ex fugit enim quibusdam corrupti mollitia quisquam hic repudiandae. ";
-  const dummyLocation = "Addis Ababa";
-  const dummyTimeAgo = "2 days ago";
-  const dummyStatus = "Open";
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeCard, setActiveCard] = useState(null);
+  const [userId, setUserId] = useState(
+    auth.currentUser ? auth.currentUser.uid : null
+  );
+
+  const navigate = useNavigate();
+  const cardClickHandler = (index) => {
+    setActiveIndex(index);
+    setActiveCard(searchResults[index]);
+    getCompanyById(searchResults[index].companyId).then((doc) => {
+      if (doc.exists) {
+        setActiveCard({ ...searchResults[index], company: doc.data() });
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    });
+  };
 
   const searchHandler = () => {
+    if (textInput.length === 0) {
+      getAllInternships().then((snapshot) => {
+        let internships = snapshot.docs.map((doc) => doc.data());
+        setSearchResults(internships);
+        setActiveCard(internships[0]);
+      });
+      return;
+    }
+
     getInternshipsByTitle(textInput).then((snapshot) => {
       let results = snapshot.docs.map((doc) => doc.data());
       setSearchResults(results);
-      console.log(results);
     });
     if (tagInputs.length === 0) return;
     getInternshipsByTag(tagInputs).then((snapshot) => {
       let results = snapshot.docs.map((doc) => doc.data());
       setSearchResults((prevResults) => [...prevResults, ...results]);
-      console.log(results);
     });
   };
 
-  const onApply = () => {
-    showModal();
-  };
+  useEffect(() => {
+    getAllInternships().then((snapshot) => {
+      let internships = snapshot.docs.map((doc) => doc.data());
+      setSearchResults(internships);
+      setActiveCard(internships[0]);
+    });
+  }, [getAllInternships]);
 
+  if (!activeCard) {
+    navigate("/login");
+    return null;
+  }
   return (
     <section className="h-screen bg-gray-100">
       <Navbar />
@@ -58,32 +96,40 @@ const Home = () => {
         <TagInput updateTags={(tags) => setTagInputs(tags)} tags={tagInputs} />
         <SearchButton onSearch={searchHandler} />
       </div>
-      <section className="grid grid-cols-3">
-        <div className="col-span-2">
-          <Box
-            sx={{
-              marginLeft: 2,
-              marginTop: 2,
-            }}
-          >
-            {cards.map((card, index) => (
-              <div key={index}>
-                <ICard title={card} />
-                <br />
-              </div>
-            ))}
-          </Box>
-        </div>
-        <div className="col-span-1">
-          <InternshipDetails
-            imageUrl={dummyImageUrl}
-            title={dummyTitle}
-            company={dummyCompany}
-            description={dummyDescription}
-            location={dummyLocation}
-            timeAgo={dummyTimeAgo}
-            status={dummyStatus}
-          />
+      <section className={styles.flexbox}>
+        <div className={styles.main}>
+          <div className={styles.list}>
+            <Box>
+              {searchResults.map((result, index) => (
+                <div key={index}>
+                  <ICard
+                    onClick={cardClickHandler}
+                    title={result.title}
+                    date={result.timestamp}
+                    type={result.type}
+                    city={result.city}
+                    active={index === activeIndex ? true : false}
+                    companyId={result.companyId}
+                    internshipId={result.internshipId}
+                    index={index}
+                    status={result.status}
+                  />
+                  <br />
+                </div>
+              ))}
+            </Box>
+          </div>
+          <div className={styles.details}>
+            <InternshipDetails
+              imageUrl={activeCard?.company?.logo}
+              title={activeCard?.title}
+              company={activeCard?.company?.companyName}
+              description={activeCard?.description}
+              location={activeCard?.city}
+              status={activeCard?.status}
+              internshipId={activeCard?.internshipId}
+            />
+          </div>
         </div>
       </section>
     </section>

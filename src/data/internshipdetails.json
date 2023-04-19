@@ -7,7 +7,11 @@
       "internshipId": " i59XlbSJDbSyrf4udwedawez",
       "salary": "1000",
       "status": "Active",
-      "tags": ["python", "javascript", "firebase"],
+      "tags": [
+        "python",
+        "javascript",
+        "firebase"
+      ],
       "timestamp": "Wed Apr 19 2023 10:34:56 GMT+0200",
       "title": "software engineering internship",
       "type": "Onsite"
@@ -19,10 +23,55 @@
       "internshipId": " i59XlbSJDbSyrf4udwedawez",
       "salary": "1000",
       "status": "Active",
-      "tags": ["javascript", "firebase"],
+      "tags": [
+        "javascript",
+        "firebase"
+      ],
       "timestamp": "Wed Apr 19 2023 10:34:56 GMT+0200",
       "title": "frontend developer",
       "type": "Remote"
+    }
+  ],
+  "companies": [
+    {
+      "city": "Addis Ababa",
+      "companyId": "i59XlbSJDbSyrf4uawez",
+      "companyName": "Snowflake",
+      "country": "Ethiopia",
+      "email": "bedru777@gmail.com",
+      "isVerified": false,
+      "logo": "https://news.otc.edu/media/uploads/2015/12/snowflake.jpg",
+      "rating": 4.5
+    },
+    {
+      "city": "Addis Ababa",
+      "companyId": "i59XlbSJDbSyrf4uawez",
+      "companyName": "Block",
+      "country": "Ethiopia",
+      "email": "block@gmail.com",
+      "isVerified": false,
+      "logo": "https://news.otc.edu/media/uploads/2015/12/snowflake.jpg",
+      "rating": 4.5
+    }
+  ],
+  "students": [
+    {
+      "country": "Ethiopia",
+      "email": "shasssden1s@stu.vistula.edu",
+      "firstName": "sadoreshetu",
+      "lastName": "hassen",
+      "major": "Computer Science",
+      "studentId": "6ezlLrwPq5YN1gheAPcnA32d5Uf1",
+      "university": "AASTU"
+    },
+    {
+      "country": "Ethiopia",
+      "email": "shasssden1s@stu.vistula.edu",
+      "firstName": "sadoreshetu",
+      "lastName": "hassen",
+      "major": "Computer Science",
+      "studentId": "6ezlLrwPq5YN1gheAPcnA32d5Uf1",
+      "university": "AASTU"
     }
   ]
 }
