@@ -47,7 +47,7 @@ export const getInternshipsByTitle = (title) => {
   return db.collection("internships").where("title", "==", title).get();
 };
 
-export const getInternshipsByTags = (tags) => {
+export const getInternshipsByTag = (tags) => {
   return db
     .collection("internships")
     .where("tags", "array-contains-any", tags)
