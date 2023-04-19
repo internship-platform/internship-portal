@@ -42,7 +42,7 @@ const LoginForm = ({ formValues, handleInputChange, handleSubmit }) => {
             htmlFor="link-checkbox"
             class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-900"
           >
-            Already have an account?
+            if you don't already have an account
           </label>
         </div>
       </section>
