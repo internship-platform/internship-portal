@@ -1,0 +1,28 @@
+{
+  "internships": [
+    {
+      "city": "Addis Ababa",
+      "companyId": "i59XlbSJDbSyrf4uawez",
+      "description": "The Red Hat Czech High Availability Cluster team is looking for an Intern for developing a HA cluster management tool to join us in Brno, Czech Republic. As an HA cluster intern, you will contribute to the HA cluster management tool. In this role, you will work on the command line interface or web UI of the management tool. This long-term internship will give you an introduction to HA clustering, experience in working on a long-term larger project in a team, cooperation with the open-source community, and an opportunity to improve your English.",
+      "internshipId": " i59XlbSJDbSyrf4udwedawez",
+      "salary": "1000",
+      "status": "Active",
+      "tags": ["python", "javascript", "firebase"],
+      "timestamp": "Wed Apr 19 2023 10:34:56 GMT+0200",
+      "title": "software engineering internship",
+      "type": "Onsite"
+    },
+    {
+      "city": "Adama",
+      "companyId": "i59XlbSJDbSyrf4uawez",
+      "description": "The Red Hat Czech High Availability Cluster team is looking for an Intern for developing a HA cluster management tool to join us in Brno, Czech Republic. As an HA cluster intern, you will contribute to the HA cluster management tool. In this role, you will work on the command line interface or web UI of the management tool. This long-term internship will give you an introduction to HA clustering, experience in working on a long-term larger project in a team, cooperation with the open-source community, and an opportunity to improve your English.",
+      "internshipId": " i59XlbSJDbSyrf4udwedawez",
+      "salary": "1000",
+      "status": "Active",
+      "tags": ["javascript", "firebase"],
+      "timestamp": "Wed Apr 19 2023 10:34:56 GMT+0200",
+      "title": "frontend developer",
+      "type": "Remote"
+    }
+  ]
+}

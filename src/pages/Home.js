@@ -7,9 +7,12 @@ import styles from "./Home.module.scss";
 import TagInput from "../components/SearchBar/TagInput";
 import Button from "../components/Button";
 import { useState } from "react";
-import { getInternshipsByTitle } from "../firebase/actions/dbActions";
+import {
+  getInternshipsByTag,
+  getInternshipsByTitle,
+} from "../firebase/actions/dbActions";
 
-const cards = ['Programming', 'Web Development', 'Graphics', 'Content-writing'];
+const cards = ["Programming", "Web Development", "Graphics", "Content-writing"];
 
 const Home = () => {
   const [textInput, setTextInput] = useState("");
@@ -17,8 +20,15 @@ const Home = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   const searchHandler = () => {
-    getInternshipsByTitle(textInput.toLowerCase()).then((results) => {
+    getInternshipsByTitle(textInput).then((snapshot) => {
+      let results = snapshot.docs.map((doc) => doc.data());
       setSearchResults(results);
+      console.log(results);
+    });
+    if (tagInputs.length === 0) return;
+    getInternshipsByTag(tagInputs).then((snapshot) => {
+      let results = snapshot.docs.map((doc) => doc.data());
+      setSearchResults((prevResults) => [...prevResults, ...results]);
       console.log(results);
     });
   };
@@ -49,6 +59,6 @@ const Home = () => {
       </Box>
     </>
   );
-}
+};
 
 export default Home;
