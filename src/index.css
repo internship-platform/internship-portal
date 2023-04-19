@@ -5,19 +5,3 @@
 * {
   overflow-x: hidden;
 }
-::-moz-selection {
-  background: #b3d4fc;
-}
-
-::-webkit-scrollbar {
-  width: 0.7rem;
-}
-::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-  background-color: rgb(49, 148, 247);
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(106, 176, 246);
-}

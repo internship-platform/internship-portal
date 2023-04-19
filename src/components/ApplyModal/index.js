@@ -6,12 +6,9 @@ import {
   addApplicantToInternship,
   addApplicationToStudent,
 } from "../../firebase/actions/dbActions";
+import { useNavigate } from "react-router";
 
 const applicationHandler = async (studentId, internshipId, resumeUrl) => {
-  // for testing
-  // const studentId = "eecEU6a6Wk44K31RsPms";
-  // const internshipId = "i59XlbSJDbSyrf4uawez";
-
   Promise.all([
     addApplicationToStudent(studentId, internshipId),
     addApplicantToInternship(internshipId, studentId, resumeUrl),
@@ -21,7 +18,10 @@ const applicationHandler = async (studentId, internshipId, resumeUrl) => {
 //u need to pass the internshipId as a prop here
 const ApplyModal = ({ internshipId }) => {
   const [file, setFile] = useState(null);
-  const studentId = auth?.currentUser?.uid;
+  const [studentId, setStudentId] = useState(
+    auth.currentUser ? auth.currentUser.uid : null
+  );
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!file) return;
@@ -82,13 +82,12 @@ const ApplyModal = ({ internshipId }) => {
   };
 
   const onApply = () => {
-    showModal();
+    if (!studentId) navigate("/login");
+    else showModal();
   };
   return (
     <button
-      className="
-        btn btn-primary btn-lg bg-blue-500 hover:bg-blue-700 text-white py-1 px-8 rounded
-      "
+      className="w-full mt-4 text-white bg-blue-500 hover:bg-blue-600 focus:outline-none font-medium rounded-sm text-sm px-2 py-2.5 text-center"
       onClick={onApply}
     >
       Apply
