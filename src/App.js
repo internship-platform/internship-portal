@@ -4,6 +4,8 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { MyInternships } from "./pages/MyInternships";
 import Company from "./pages/Company";
+import ApplicantTracker from "./pages/ApplicantTracker";
+import PostInternship from "./pages/PostInternship";
 function App() {
   return (
     <div className="bg-blue-100">
@@ -13,6 +15,8 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/myinternship" element={<MyInternships />}></Route>
         <Route path="/company" element={<Company />}></Route>
+        <Route path="/applications/:id" element={<ApplicantTracker />}></Route>
+        <Route path="/internship" element={<PostInternship />}></Route>
       </Routes>
     </div>
   );
