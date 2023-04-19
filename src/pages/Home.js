@@ -102,7 +102,7 @@ const Home = () => {
                     companyId={result.companyId}
                     internshipId={result.internshipId}
                     index={index}
-                    status={result.status === "Active" ? true : false}
+                    status={result.status}
                   />
                   <br />
                 </div>
