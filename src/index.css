@@ -2,12 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  overflow-x: hidden;
+}
 ::-moz-selection {
   background: #b3d4fc;
 }
 
 ::-webkit-scrollbar {
-  width: .7rem;
+  width: 0.7rem;
 }
 ::-webkit-scrollbar-track {
   background-color: #f1f1f1;

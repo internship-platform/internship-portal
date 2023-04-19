@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { MyInternships } from "./pages/MyInternships";
+
 function App() {
   return (
     <div className="bg-blue-100">

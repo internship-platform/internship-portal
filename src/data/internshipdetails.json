@@ -24,5 +24,48 @@
       "title": "frontend developer",
       "type": "Remote"
     }
+  ],
+
+  "companies": [
+    {
+      "city": "Addis Ababa",
+      "companyId": "i59XlbSJDbSyrf4uawez",
+      "companyName": "Snowflake",
+      "country": "Ethiopia",
+      "email": "bedru777@gmail.com",
+      "isVerified": false,
+      "logo": "https://news.otc.edu/media/uploads/2015/12/snowflake.jpg",
+      "rating": 4.5
+    },
+    {
+      "city": "Addis Ababa",
+      "companyId": "i59XlbSJDbSyrf4uawez",
+      "companyName": "Block",
+      "country": "Ethiopia",
+      "email": "block@gmail.com",
+      "isVerified": false,
+      "logo": "https://news.otc.edu/media/uploads/2015/12/snowflake.jpg",
+      "rating": 4.5
+    }
+  ],
+  "students": [
+    {
+      "country": "Ethiopia",
+      "email": "shasssden1s@stu.vistula.edu",
+      "firstName": "sadoreshetu",
+      "lastName": "hassen",
+      "major": "Computer Science",
+      "studentId": "6ezlLrwPq5YN1gheAPcnA32d5Uf1",
+      "university": "AASTU"
+    },
+    {
+      "country": "Ethiopia",
+      "email": "shasssden1s@stu.vistula.edu",
+      "firstName": "sadoreshetu",
+      "lastName": "hassen",
+      "major": "Computer Science",
+      "studentId": "6ezlLrwPq5YN1gheAPcnA32d5Uf1",
+      "university": "AASTU"
+    }
   ]
 }
