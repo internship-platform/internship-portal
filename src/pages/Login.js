@@ -76,7 +76,7 @@ const Login = () => {
   };
 
   if (isRegistered) {
-    return <Navigate replace to="/" />;
+    return <Navigate replace to="/home" />;
   } else {
     return (
       <LoginForm

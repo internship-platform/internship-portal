@@ -16,6 +16,8 @@ import {
 import InternshipDetails from "../components/DetailCard/InternshipDetails";
 import { useEffect } from "react";
 import { getDateAndYear, timeAgo } from "../utils";
+import { auth } from "../firebase/firebase";
+import { useNavigate } from "react-router";
 
 const cards = [
   "Programming",
@@ -32,7 +34,11 @@ const Home = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeCard, setActiveCard] = useState(null);
+  const [userId, setUserId] = useState(
+    auth.currentUser ? auth.currentUser.uid : null
+  );
 
+  const navigate = useNavigate();
   const cardClickHandler = (index) => {
     setActiveIndex(index);
     setActiveCard(searchResults[index]);
@@ -75,6 +81,10 @@ const Home = () => {
     });
   }, [getAllInternships]);
 
+  if (!activeCard) {
+    navigate("/login");
+    return null;
+  }
   return (
     <section className="h-screen bg-gray-100">
       <Navbar />

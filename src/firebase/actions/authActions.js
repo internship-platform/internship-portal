@@ -76,3 +76,7 @@ export const login = async (formValues) => {
     return false;
   }
 };
+
+export const logout = () => {
+  auth.signOut();
+};
