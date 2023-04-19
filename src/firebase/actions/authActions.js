@@ -1,4 +1,4 @@
-import { db, auth } from '../firebase';
+import { db, auth } from "../firebase";
 
 export const signUp = async (formValues) => {
   try {
@@ -8,12 +8,12 @@ export const signUp = async (formValues) => {
     // Create a new user account
     const userCredential = await auth.createUserWithEmailAndPassword(
       email,
-      password,
+      password
     );
     const { uid } = userCredential.user;
 
     // Create a new document in Firestore with the user's information
-    await db.collection('students').doc(uid).set({
+    await db.collection("students").doc(uid).set({
       firstName,
       lastName,
       major,
@@ -23,11 +23,11 @@ export const signUp = async (formValues) => {
       studentId: uid,
     });
 
-    console.log('User signed up successfully:', userCredential.user);
+    console.log("User signed up successfully:", userCredential.user);
     // Redirect to the home page
     return true;
   } catch (error) {
-    console.error('Error signing up:', error);
+    console.error("Error signing up:", error);
     return false;
     // Handle the error as necessary, such as displaying an error message to the user
   }
@@ -43,4 +43,8 @@ export const login = async (formValues) => {
     // Handle login error
     return false;
   }
+};
+
+export const logout = () => {
+  auth.signOut();
 };

@@ -16,6 +16,8 @@ import MenuItem from "@mui/material/MenuItem";
 import SchoolIcon from "@mui/icons-material/School";
 
 import AvatarImg from "./../../images/avatar.jpg";
+import { logout } from "../../firebase/actions/authActions";
+import { useNavigate } from "react-router";
 // import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const navs = [
@@ -23,12 +25,17 @@ const navs = [
   ["My Internships", "myinternship"],
   ["Find Salary", "salary"],
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Account", "Dashboard"];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    handleCloseUserMenu();
+    logout();
+    navigate("/login");
+  };
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -206,6 +213,9 @@ function Navbar() {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
+              <MenuItem onClick={handleLogout}>
+                <Typography textAlign="center">Log out</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

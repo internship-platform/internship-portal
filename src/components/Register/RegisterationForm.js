@@ -110,12 +110,15 @@ const RegisterationForm = ({ formValues, handleInputChange, handleSubmit }) => {
 
       <section>
         <div class="flex items-center">
-          <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">
+          <a
+            href="/login"
+            class="text-blue-600 dark:text-blue-500 hover:underline"
+          >
             Login Here
           </a>
           <label
             for="link-checkbox"
-            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-900"
           >
             if you already have an account
           </label>
