@@ -5,7 +5,7 @@ import ICard from "../components/ICard";
 import TextInput from "../components/SearchBar/TextInput";
 import styles from "./Home.module.scss";
 import TagInput from "../components/SearchBar/TagInput";
-import Button from "../components/Button";
+import SearchButton from "../components/SearchButton";
 import { useState } from "react";
 import {
   getInternshipsByTag,
@@ -33,6 +33,10 @@ const Home = () => {
     });
   };
 
+  const onApply = () => {
+    showModal();
+  };
+
   return (
     <>
       <Navbar />
@@ -42,7 +46,7 @@ const Home = () => {
           input={textInput}
         />
         <TagInput updateTags={(tags) => setTagInputs(tags)} tags={tagInputs} />
-        <Button onSearch={searchHandler} />
+        <SearchButton onSearch={searchHandler} />
       </div>
       <Box
         sx={{

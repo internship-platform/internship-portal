@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./Button.module.scss";
+import styles from "./SearchButton.module.scss";
 import { ReactComponent as SearchIcon } from "../../assets/svg/search.svg";
 
-const Button = ({ onSearch }) => {
+const SearchButton = ({ onSearch }) => {
   return (
     <button className={styles.button} onClick={onSearch}>
       <SearchIcon />
@@ -11,4 +11,4 @@ const Button = ({ onSearch }) => {
   );
 };
 
-export default Button;
+export default SearchButton;

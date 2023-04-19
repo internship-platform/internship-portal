@@ -9,7 +9,7 @@ export const getAllStudents = () => {
 };
 
 export const getStudentById = (id) => {
-  return db.collection("students").where("studentId", "==", id).get();
+  return db.collection("students").doc(id).get();
 };
 
 export const addCompany = (company) => {
@@ -21,7 +21,7 @@ export const getAllCompanies = () => {
 };
 
 export const getCompanyById = (id) => {
-  return db.collection("companies").where("companyId", "==", id).get();
+  return db.collection("companies").doc(id).get();
 };
 
 export const addInternship = (internship) => {
@@ -33,7 +33,7 @@ export const getAllInternships = () => {
 };
 
 export const getInternshipById = (id) => {
-  return db.collection("internships").where("internshipId", "==", id).get();
+  return db.collection("internships").doc(id).get();
 };
 
 export const getInternshipsByCompanyId = (companyId) => {
@@ -52,4 +52,77 @@ export const getInternshipsByTag = (tags) => {
     .collection("internships")
     .where("tags", "array-contains-any", tags)
     .get();
+};
+
+export const addApplicationToStudent = (studentId, internshipId) => {
+  return new Promise((resolve, reject) => {
+    db.collection("internships")
+      .doc(internshipId)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const internshipData = doc.data();
+          db.collection("students")
+            .doc(studentId)
+            .collection("applications")
+            .add({
+              ...internshipData,
+              status: "Applied",
+              timestamp: new Date(Date.now()).toString(),
+            })
+            .then((docRef) => {
+              console.log("Application added with ID: ", docRef.id);
+              resolve(docRef.id);
+            })
+            .catch((error) => {
+              console.error("Error adding application: ", error);
+              reject(error);
+            });
+        } else {
+          console.error("Internship not found");
+          reject(new Error("Internship not found"));
+        }
+      })
+      .catch((error) => {
+        console.error("Error getting internship: ", error);
+        reject(error);
+      });
+  });
+};
+
+export const addApplicantToInternship = (
+  internshipId,
+  studentId,
+  resumeUrl
+) => {
+  return new Promise((resolve, reject) => {
+    db.collection("students")
+      .doc(studentId)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const studentData = doc.data();
+          db.collection("internships")
+            .doc(internshipId)
+            .collection("applicants")
+            .add({
+              ...studentData,
+              resumeUrl,
+              status: "Applied",
+              timestamp: new Date(Date.now()).toString(),
+            })
+            .then((docRef) => {
+              console.log("Applicant added with ID: ", docRef.id);
+              resolve(docRef.id);
+            })
+            .catch((error) => {
+              console.error("Error adding applicant: ", error);
+              reject(error);
+            });
+        } else {
+          console.error("Student not found");
+          reject(new Error("Student not found"));
+        }
+      });
+  });
 };
