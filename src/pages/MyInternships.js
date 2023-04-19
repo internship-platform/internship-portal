@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import EmptyInternship from "../components/MCard/EmptyInternship";
 import MCard from "../components/MCard/MCard";
+import Navbar from "../components/Navbar";
 import { db, auth } from "../firebase/firebase";
+
 export const getAllInternshipsByStudent = (id) => {
   return new Promise((resolve, reject) => {
     db.collection("students")
@@ -56,27 +58,30 @@ export const MyInternships = () => {
   }, []);
 
   return (
-    <section className="bg-white">
-      {internships.length > 0 ? (
-        // Render internships list
-        internships.map((internship) => (
-          <div key={internship.id}>
-            <MCard
-              imageUrl={internship.data.logo}
-              title={internship.data.title}
-              company={internship.data.company}
-              description={internship.data.description}
-              location={internship.data.city}
-              timeAgo={""}
-              status={internship.data.status}
-            />
-            {/* Render other internship data as needed */}
-          </div>
-        ))
-      ) : (
-        // Render message when internships array is empty
-        <EmptyInternship />
-      )}
-    </section>
+    <>
+      <Navbar />
+      <section className="bg-white">
+        {internships.length > 0 ? (
+          // Render internships list
+          internships.map((internship) => (
+            <div key={internship.id}>
+              <MCard
+                imageUrl={internship.data.logo}
+                title={internship.data.title}
+                company={internship.data.company}
+                description={internship.data.description}
+                location={internship.data.city}
+                timeAgo={""}
+                status={internship.data.status}
+              />
+              {/* Render other internship data as needed */}
+            </div>
+          ))
+        ) : (
+          // Render message when internships array is empty
+          <EmptyInternship />
+        )}
+      </section>
+    </>
   );
 };
