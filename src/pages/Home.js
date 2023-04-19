@@ -12,8 +12,37 @@ import {
   getInternshipsByTitle,
 } from "../firebase/actions/dbActions";
 import InternshipDetails from "../components/DetailCard/InternshipDetails";
+import LaptopImg from "../images/laptop.jpg";
 
-const cards = ["Programming", "Web Development", "Graphics", "Content-writing"];
+const sampleCards = [
+  {
+    title: "Programming",
+    date: "January 8, 2023",
+    type: "Full time",
+    img: LaptopImg,
+    city: "Addis Ababa",
+  },
+  {
+    title: "Graphics Design",
+    date: "January 8, 2023",
+    type: "Part time",
+    img: LaptopImg,
+    city: "Adama",
+  },
+  {
+    title: "Content Writing",
+    date: "January 8, 2023",
+    type: "Full time",
+    city: "BahirDar",
+  },
+  {
+    title: "Graphics Design",
+    date: "January 8, 2023",
+    type: "Part time",
+    img: LaptopImg,
+    city: "Hawassa",
+  },
+];
 
 const Home = () => {
   const [textInput, setTextInput] = useState("");
@@ -66,9 +95,16 @@ const Home = () => {
               marginTop: 2,
             }}
           >
-            {cards.map((card, index) => (
+            {sampleCards.map((card, index) => (
               <div key={index}>
-                <ICard title={card} />
+                <ICard
+                  title={card.title}
+                  img={card.img}
+                  date={card.date}
+                  type={card.type}
+                  city={card.city}
+                  active={index % 2 === 0 ? true : false}
+                />
                 <br />
               </div>
             ))}

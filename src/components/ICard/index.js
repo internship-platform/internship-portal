@@ -1,11 +1,14 @@
 import * as React from "react";
 
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardActions from "@mui/material/CardActions";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Chip from "@mui/material/Chip";
+import {
+  Typography,
+  Card,
+  CardHeader,
+  CardActions,
+  Avatar,
+  IconButton,
+  Chip,
+} from "@mui/material";
 import { red } from "@mui/material/colors";
 // import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -13,15 +16,26 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LaptopImg from "./../../images/laptop.jpg";
 
 export default function ICard(props) {
+  const { img, title, date, type, city, active } = props;
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card
+      sx={{
+        maxWidth: 345,
+        backgroundColor: active ? "blue" : "white",
+        transition: "all 0.3s ease-in-out",
+      }}
+    >
       <CardHeader
         avatar={
           <Avatar
-            sx={{ bgcolor: red[500] }}
+            sx={{
+              bgcolor: red[500],
+              outline: "0.2em solid white",
+              outlineOffset: "-0.2em",
+            }}
             aria-label="company"
             variant="rounded"
-            src={LaptopImg}
+            src={img}
           >
             C
           </Avatar>
@@ -29,27 +43,39 @@ export default function ICard(props) {
         action={
           <IconButton aria-label="add to favorites">
             {/* <FavoriteIcon variant="outlined" /> */}
-            <FavoriteBorderIcon />
+            <FavoriteBorderIcon sx={{ color: active ? "white" : "black" }} />
           </IconButton>
         }
-        title={props.title}
-        subheader="January 14, 2023"
+        title={title}
+        subheader={date}
+        subheaderTypographyProps={{
+          color: active ? "rgba(255, 255, 255, 0.8)" : "black",
+        }}
+        sx={{
+          color: active ? "white" : "black",
+        }}
       />
-      <CardActions>
+      <CardActions
+        sx={{
+          display: "flex",
+          gap: "1em",
+        }}
+      >
         <Chip
-          label="Full Time"
+          label={type}
           sx={{
-            color: "red",
+            color: active ? "white" : "red",
             borderRadius: "5px",
           }}
         />
-        <Chip
-          label="Senior Level"
+        <Typography
           sx={{
-            color: "blue",
-            borderRadius: "5px",
+            color: active ? "white" : "blue",
+            fontSize: "0.8em",
           }}
-        />
+        >
+          {city}
+        </Typography>
       </CardActions>
     </Card>
   );
