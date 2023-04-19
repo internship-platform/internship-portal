@@ -18,7 +18,11 @@ import SchoolIcon from "@mui/icons-material/School";
 import AvatarImg from "./../../images/avatar.jpg";
 // import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-const pages = ["Find Job", "Company Review", "Find Salary"];
+const navs = [
+  ["Find Job", "home"],
+  ["My Internships", "myinternship"],
+  ["Find Salary", "salary"],
+];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
@@ -38,6 +42,11 @@ function Navbar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const isActive = (link) => {
+    if (window.location.pathname === "/" + link) return true;
+    return false;
   };
 
   return (
@@ -60,7 +69,7 @@ function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -103,9 +112,15 @@ function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {navs.map((page) => (
+                <MenuItem key={page[0]} onClick={handleCloseNavMenu}>
+                  <Typography
+                    href={"/" + page[1]}
+                    textAlign="center"
+                    color={isActive(page[1]) ? "blue" : "black"}
+                  >
+                    {page[0]}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -120,7 +135,7 @@ function Navbar() {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -138,21 +153,27 @@ function Navbar() {
           <Box
             sx={{
               flexGrow: 1,
-              display: { xs: "none", md: "flex", justifyContent: "center" },
+              display: {
+                xs: "none",
+                md: "flex",
+                justifyContent: "center",
+                gap: "1em",
+              },
             }}
           >
-            {pages.map((page) => (
+            {navs.map((page) => (
               <Button
-                key={page}
+                key={page[0]}
                 onClick={handleCloseNavMenu}
+                href={"/" + page[1]}
                 sx={{
                   my: 2,
-                  color: "black",
+                  color: isActive(page[1]) ? "blue" : "black",
                   display: "block",
                   textTransform: "none",
                 }}
               >
-                {page}
+                {page[0]}
               </Button>
             ))}
           </Box>
