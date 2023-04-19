@@ -31,6 +31,9 @@ export const addInternship = (internship) => {
 export const getAllInternships = () => {
   return db.collection("internships").get();
 };
+export const getAllInternshipsByStudent = () => {
+  return db.collection("students").applications().get();
+};
 
 export const getInternshipById = (id) => {
   return db.collection("internships").where("internshipId", "==", id).get();
