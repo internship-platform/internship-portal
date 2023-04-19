@@ -35,14 +35,17 @@ const LoginForm = ({ formValues, handleInputChange, handleSubmit }) => {
 
       <section>
         <div class="flex items-center">
-          <a href="" class="text-blue-600 dark:text-blue-500 hover:underline">
-            Login here
+          <a
+            href="/signup"
+            class="text-blue-600 dark:text-blue-500 hover:underline"
+          >
+            Signup here
           </a>
           <label
             for="link-checkbox"
             class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
           >
-            if you already have an account
+            if you don't already have an account
           </label>
         </div>
       </section>
