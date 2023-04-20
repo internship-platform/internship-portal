@@ -4,6 +4,8 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { MyInternships } from "./pages/MyInternships";
 import Company from "./pages/Company";
+import ApplicantTracker from "./pages/ApplicantTracker";
+import PostInternship from "./pages/PostInternship";
 import CoRegister from "./pages/CoRegister";
 
 function App() {
@@ -16,9 +18,10 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/myinternship" element={<MyInternships />}></Route>
         <Route path="/company" element={<Company />}></Route>
+        <Route path="/applications/:id" element={<ApplicantTracker />}></Route>
+        <Route path="/internship" element={<PostInternship />}></Route>
       </Routes>
     </div>
   );
 }
-
 export default App;

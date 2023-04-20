@@ -1,30 +1,33 @@
 import React from "react";
-const CompanyCard = ({
-  jobTitle,
-  description,
-  location,
-  status,
-  timestamp,
-}) => {
+import { Link } from "react-router-dom";
+const CompanyCard = ({ internship }) => {
   return (
-    <section className="col-span-1">
-      <div className="my-16 flex flex-col max-w-[320px] min-h-[180px] shadow">
-        <div className="flex flex-col p-4">
-          <p className="font-semibold text-base">{jobTitle}</p>
-          <p className="text-sm mt-4 text-gray-600 line-clamp-4">
-            {description}
-          </p>
-          <div className="flex flex-row justify-between">
-            <p className="mt-4 text-gray-500">{location}</p>
-            <p className="mt-4 mr-4 text-green-500 text-sm">{status}</p>
+    <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="p-4">
+        <h2 className="text-lg font-medium text-gray-900">
+          {internship.title}
+        </h2>
+        <p className="mt-2 text-sm text-gray-600 line-clamp-4">
+          {internship.description}
+        </p>
+        <div className="mt-4 flex justify-between items-center">
+          <div className="flex items-center">
+            <span className="text-sm text-gray-700">{internship.city}</span>
           </div>
         </div>
-        <div className="flex flex-row p-4 bg-gray-100 rounded-b-lg">
-          <p className="text-xs text-gray-500 ml-auto">{timestamp}</p>
-        </div>
       </div>
-    </section>
+      <div className="bg-gray-100 px-4 py-4 flex justify-between">
+        <span className="text-sm font-medium text-gray-900">
+          {internship.status}
+        </span>
+        <Link
+          to={`/applications/${internship.id}`}
+          className="text-sm font-medium text-indigo-500 hover:text-indigo-400"
+        >
+          View Applications
+        </Link>
+      </div>
+    </div>
   );
 };
-
 export default CompanyCard;
