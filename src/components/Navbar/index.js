@@ -23,7 +23,7 @@ import { useNavigate } from "react-router";
 const navs = [
   ["Find Job", "home"],
   ["My Internships", "myinternship"],
-  ["Find Salary", "salary"],
+  // ["Companies", "companies"],
 ];
 const settings = ["Profile", "Account", "Dashboard"];
 

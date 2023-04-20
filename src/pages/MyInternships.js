@@ -60,7 +60,12 @@ export const MyInternships = () => {
   return (
     <>
       <Navbar />
-      <section className="bg-white">
+      <section
+        // className="bg-white"
+        style={{
+          backgroundColor: "rgba(255, 255, 255, 0.1)",
+        }}
+      >
         {internships.length > 0 ? (
           // Render internships list
           internships.map((internship) => (
