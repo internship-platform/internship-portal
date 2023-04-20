@@ -45,12 +45,12 @@ export const coRegister = async (formValues) => {
     const { uid } = userCredential.user;
 
     // Create a new document in Firestore with the user's information
-    await db.collection("company").doc(uid).set({
-      companyName,
-      lastName,
+    await db.collection("companies").doc(uid).set({
       city,
+      companyName,
       country,
       email,
+      isVerified: false,
       companyId: uid,
     });
 
