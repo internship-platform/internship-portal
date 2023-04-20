@@ -19,9 +19,7 @@ const ApplicantTracker = ({ status, companyId, internshipId }) => {
   console.log(currentUserId);
   useEffect(() => {
     const unsubscribe = db
-      .collection("companies")
-      .doc("i59XlbSJDbSyrf4uawez")
-      .collection("postedInternships")
+      .collection("internships")
       .doc(id)
       .collection("applicants")
       .onSnapshot((snapshot) => {
@@ -45,6 +43,7 @@ const ApplicantTracker = ({ status, companyId, internshipId }) => {
         <p className="text-lg text-gray-900 font-semibold">Applicants</p>
         {applicants.map((applicant) => (
           <Applicant
+            onClick={() => window.open(applicant.resumeUrl, "_blank")}
             key={applicant.id}
             name={applicant.name}
             appliedTime={applicant.timestamp}
@@ -62,6 +61,7 @@ const ApplicantTracker = ({ status, companyId, internshipId }) => {
             .filter((applicant) => applicant.status === "interview")
             .map((applicant) => (
               <Applicant
+                onClick={() => window.open(applicant.resumeUrl, "_blank")}
                 key={applicant.id}
                 name={applicant.name}
                 appliedTime={applicant.timestamp}
@@ -77,6 +77,7 @@ const ApplicantTracker = ({ status, companyId, internshipId }) => {
             .filter((applicant) => applicant.status === "rejected")
             .map((applicant) => (
               <Applicant
+                onClick={() => window.open(applicant.resumeUrl, "_blank")}
                 key={applicant.id}
                 name={applicant.name}
                 appliedTime={applicant.timestamp}
@@ -92,6 +93,7 @@ const ApplicantTracker = ({ status, companyId, internshipId }) => {
             .filter((applicant) => applicant.status === "accepted")
             .map((applicant) => (
               <Applicant
+                onClick={() => window.open(applicant.resumeUrl, "_blank")}
                 key={applicant.id}
                 name={applicant.name}
                 appliedTime={applicant.timestamp}

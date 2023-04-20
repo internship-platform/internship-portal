@@ -75,7 +75,7 @@ const Post = () => {
 
     if (Object.keys(errors).length === 0) {
       console.log("Form submitted successfully:", formValues);
-      const currentDate = new Date();
+      const currentDate = new Date(Date.now()).toString();
       const internshipData = {
         ...formValues,
         companyId: currentUserId,
