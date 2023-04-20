@@ -52,7 +52,6 @@ const Register = () => {
 
   const validateForm = () => {
     const errors = {};
-    const universityEmailRegex = /@([a-z]+\.)+(edu|ac\.[a-z]{2})$/;
 
     if (!formValues.companyName.trim()) {
       errors.companyName = "Company name is required";
@@ -66,11 +65,8 @@ const Register = () => {
       errors.city = "City is required";
     }
 
-    if (!formValues.email.trim()) {
+    if (!formValues.email.trim()) 
       errors.email = "Email is required";
-    } else if (!universityEmailRegex.test(formValues.email)) {
-      errors.email = "Please enter a valid university email address";
-    }
 
     if (!formValues.password.trim()) {
       errors.password = "Password is required";
@@ -100,7 +96,7 @@ const Register = () => {
   };
 
   if (isRegistered) {
-    return <Navigate replace to="/" />;
+    return <Navigate replace to="/company" />;
   } else {
     return (
       <CoRegisterationForm
