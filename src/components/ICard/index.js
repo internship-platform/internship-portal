@@ -17,7 +17,8 @@ import { capitalizeString, getDateAndYear } from "../../utils";
 import { useEffect } from "react";
 
 export default function ICard(props) {
-  const { title, date, type, city, active, companyId, index, status, onClick } = props;
+  const { title, date, type, city, active, companyId, index, status, onClick } =
+    props;
   const [company, setCompany] = useState();
 
   useEffect(() => {
