@@ -4,13 +4,10 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { MyInternships } from "./pages/MyInternships";
 import Company from "./pages/Company";
-<<<<<<< HEAD
 import ApplicantTracker from "./pages/ApplicantTracker";
 import PostInternship from "./pages/PostInternship";
-=======
 import CoRegister from "./pages/CoRegister";
 
->>>>>>> main
 function App() {
   return (
     <div className="bg-blue-100">
@@ -27,5 +24,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
